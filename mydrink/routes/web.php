@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('template');
 });
 
+Route::get('/check', function(){
+    if (Auth::user()->role == 'admin') {
+        return redirect('/home');
+    }else{
+        return redirect('/');
+    }
+});
+
 Route::get('/login2', function(){
     return view('login');
 });
