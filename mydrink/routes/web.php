@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SettingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +17,12 @@ Route::get('/', function () {
     return view('template');
 });
 
-Route::get('/login2', function(){
+Route::get('/login2', function () {
     return view('login');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('profile', SettingController::class);
