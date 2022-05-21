@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,16 +20,22 @@ Route::get('/', function () {
 
 Route::get('/check', function(){
     if (Auth::user()->role == 'admin') {
-        return redirect('/home');
+        return redirect('/admin');
     }else{
-        return redirect('/');
+        return redirect('/home');
     }
 });
 
-Route::get('/login2', function(){
-    return view('login');
+Route::get('/template', function () {
+    return view('layouts.template');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::controller(SettingController::class)->group(function(){
+//     Route::get('/profile', 'index');
+// });
+
+Route::resource('profile', SettingController::class);

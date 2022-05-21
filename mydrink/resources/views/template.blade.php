@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Creative - Start Bootstrap Theme</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap Icons-->
@@ -22,7 +22,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand" href="#page-top">{{ config('app.name') }}MyDrink</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
@@ -31,10 +31,16 @@
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
-                    <ul class="navbar-nav ms-4 my-2 my-lg-0">
-                        <li class="nav-items"><a class="btn btn-primary" href="/register">Register</a></li>
-                        <li class="nav-items"><a class="btn btn-link text-white" href="/login">Login</a></li>
-                    </ul>
+                @guest
+                <ul class="navbar-nav ms-4 my-2 my-lg-0">
+                    <li class="nav-items"><a class="btn btn-primary" href="/register">Register</a></li>
+                    <li class="nav-items"><a class="btn btn-link text-white" href="/login">Login</a></li>
+                </ul>
+                @else
+                <ul class="navbar-nav ms-4 my-2 my-lg-0">
+                    <li class="nav-items"><a class="btn btn-link" href="/profile">Profil</a></li>
+                </ul>
+                @endguest
                 </div>
             </div>
         </nav>
