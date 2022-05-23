@@ -70,7 +70,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">List produk</a>
+                                    <a class="nav-link" href="/product">List produk</a>
                                     <a class="nav-link" href="layout-sidenav-light.html">Katalog</a>
                                 </nav>
                             </div>
