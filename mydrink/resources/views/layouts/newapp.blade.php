@@ -112,26 +112,26 @@
           </a>
         </li>
         <li class="nav-item">
-          {{-- <a class="nav-link d-flex justify-content-start align-items-center" href="{{ route('user.index')}}"> --}}
+          <a class="nav-link d-flex justify-content-start align-items-center" href="{{ route('user.index')}}">
             <span class="me-2 material-icons-outlined">person</span>
             Pelanggan
           </a>
         </li>
         <li class="nav-item">
-          {{-- <a class="nav-link d-flex justify-content-start align-items-center" href="{{ route('product.index')}}"> --}}
+          <a class="nav-link d-flex justify-content-start align-items-center" href="{{ route('product.index')}}">
             <span class="me-2 material-icons-outlined">inventory_2</span>
             Products
           </a>
         </li>
         @endif
         <li class="nav-item">
-          {{-- <a class="nav-link d-flex justify-content-start align-items-center" href="{{ route('produk.index')}}"> --}}
+          <a class="nav-link d-flex justify-content-start align-items-center" href="{{ route('produk.index')}}">
             <span class="me-2 material-icons-outlined">category</span>
             Katalog
           </a>
         </li>
         <li class="nav-item">
-          {{-- <a class="nav-link d-flex justify-content-start align-items-center" href="{{ route('transaction.index')}}"> --}}
+          <a class="nav-link d-flex justify-content-start align-items-center" href="{{ route('transaction.index')}}">
             <span class="me-2 material-icons-outlined">list_alt</span>
             Transaksi
           </a>

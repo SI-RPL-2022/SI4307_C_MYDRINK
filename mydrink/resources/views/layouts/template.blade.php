@@ -59,7 +59,7 @@
                             </a>
                             @if(Auth::user()->role == 'admin')
                             <div class="sb-sidenav-menu-heading">LAYANAN</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/user">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Pelanggan
                             </a>
@@ -70,7 +70,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/product">List produk</a>
+                                    <a class="nav-link" href="/produk">List produk</a>
                                     <a class="nav-link" href="layout-sidenav-light.html">Katalog</a>
                                 </nav>
                             </div>
@@ -81,7 +81,7 @@
                                 Katalog
                             </a>
                             <div class="sb-sidenav-menu-heading">TRANSAKSI</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/transaksi">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Transaksi
                             </a>
@@ -125,6 +125,9 @@
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         {{Auth::user()->name}}
+                        <p>
+                            {{Auth::user()->role}}
+                        </p>
                     </div>
                 </nav>
             </div>

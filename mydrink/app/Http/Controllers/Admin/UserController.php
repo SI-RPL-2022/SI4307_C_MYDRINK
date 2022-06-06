@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
-class SettingController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,9 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('profile.index');
+        $users = User::orderBy('role', 'desc')->get();
+
+        return view('admin.user.index', compact('users'));
     }
 
     /**
@@ -25,7 +27,7 @@ class SettingController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
@@ -36,24 +38,19 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        request()->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
+            'role' => ['required']
         ]);
-    
-        if ($request->hasFile(‘image’)) {
-            $filenameWithExt = $request->file(‘image’)->getClientOriginalName ();
-            // Get Filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just Extension
-            $extension = $request->file(‘image’)->getClientOriginalExtension();
-            // Filename To store
-            $fileNameToStore = $filename. ‘_’. time().’.’.$extension;
-            // Upload Image$path = $request->file(‘image’)->storeAs(‘public/image’, $fileNameToStore);
-            }
-            // Else add a dummy image
-            else {
-            $fileNameToStore = ‘noimage.jpg’;
-            }
+        $data = $request->all();
+
+        $data['password'] = bcrypt($request->password);
+
+        User::create($data);
+
+        return redirect()->route('user.index');
     }
 
     /**
@@ -75,7 +72,9 @@ class SettingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
@@ -87,18 +86,24 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
+        request()->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
+            'role' => ['required']
+        ]);
         $data = $request->all();
         $pass = User::find($id)->password;
 
         if ($request->password) {
             $data['password'] = bcrypt($request->password);
-        } else {
+        }else{
             $data['password'] = $pass;
         }
 
         User::find($id)->update($data);
 
-        return back();
+        return redirect()->route('user.index');
     }
 
     /**
@@ -109,6 +114,8 @@ class SettingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+
+        return redirect()->back();
     }
 }

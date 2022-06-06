@@ -19,6 +19,7 @@
                     @method('put')
                     <input type="hidden" name="role" value="{{ Auth::user()->role }}">
                     <div class="form-group">
+                        
                         <label for="">Nama</label>
                         <input type="text" name="name" value="{{ Auth::user()->name }}" class="form-control">
                         @error('name')

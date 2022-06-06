@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +42,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // });
 
 Route::resource('profile', SettingController::class);
-Route::resource('product', ProductController::class);
+Route::resource('produk', ProductController::class);
+Route::resource('transaksi', TransactionController::class);
+Route::resource('user', UserController::class);
+

@@ -31,16 +31,16 @@
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
-                @guest
-                <ul class="navbar-nav ms-4 my-2 my-lg-0">
-                    <li class="nav-items"><a class="btn btn-primary" href="/register">Register</a></li>
-                    <li class="nav-items"><a class="btn btn-link text-white" href="/login">Login</a></li>
-                </ul>
-                @else
-                <ul class="navbar-nav ms-4 my-2 my-lg-0">
-                    <li class="nav-items"><a class="btn btn-link" href="/profile">Profil</a></li>
-                </ul>
-                @endguest
+                    @guest
+                    <ul class="navbar-nav ms-4 my-2 my-lg-0">
+                        <li class="nav-item"><a class="btn btn-primary" href="/register">Register</a></li>
+                        <li class="nav-item"><a class="btn btn-link text-decoration-none" href="/login">Login</a></li>
+                    </ul>
+                    @else
+                    <ul class="navbar-nav ms-4 my-2 my-lg-0">
+                        <li class="nav-items"><a class="btn btn-link" href="/profile">Profil</a></li>
+                    </ul>
+                    @endguest
                 </div>
             </div>
         </nav>

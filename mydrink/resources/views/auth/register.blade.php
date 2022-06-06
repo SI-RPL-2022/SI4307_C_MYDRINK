@@ -37,6 +37,30 @@
                                 @enderror
                             </div>
                         </div>
+                        {{-- temporary role --}}
+                        <div class="mb-3">
+                            <label for="role" class="mb-2 text-muted">{{ __('Role') }}</label>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="role" id="role1" value="admin">
+                                    <label class="form-check-label" for="role2">
+                                        Admin
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="role" id="role2" value="admin">
+                                    <label class="form-check-label" for="role2">
+                                        Customer
+                                    </label>
+                                </div>
+                                @error('role')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="mb-3">
                             <label for="password" class="mb-2 text-muted">{{ __('Password') }}</label>
