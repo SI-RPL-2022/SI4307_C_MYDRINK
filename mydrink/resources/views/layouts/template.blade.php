@@ -70,8 +70,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="/produk">List produk</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Katalog</a>
+                                    <a class="nav-link" href="/product">List produk</a>
+                                    <a class="nav-link" href="/produk">Katalog</a>
                                 </nav>
                             </div>
                             @endif
@@ -124,8 +124,9 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        {{Auth::user()->name}}
+                        <p>{{Auth::user()->name}}</p>
                         <p>
+                            Role : 
                             {{Auth::user()->role}}
                         </p>
                     </div>

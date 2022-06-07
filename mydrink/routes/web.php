@@ -42,7 +42,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // });
 
 Route::resource('profile', SettingController::class);
-Route::resource('produk', ProductController::class);
+Route::resource('product', ProductController::class);
 Route::resource('transaksi', TransactionController::class);
 Route::resource('user', UserController::class);
 
