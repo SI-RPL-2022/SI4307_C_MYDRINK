@@ -1,10 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\ProductController as ControllersProductController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +20,13 @@ use App\Http\Controllers\Admin\UserController;
 */
 
 Route::get('/', function () {
-    return view('template');
+    return view('welcome');
 });
 
-Route::get('/check', function(){
+Route::get('/check', function () {
     if (Auth::user()->role == 'admin') {
         return redirect('/admin');
-    }else{
+    } else {
         return redirect('/home');
     }
 });
@@ -43,6 +45,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('profile', SettingController::class);
 Route::resource('produk', ProductController::class);
+Route::resource('produk', ControllersProductController::class);
 Route::resource('transaksi', TransactionController::class);
+Route::post('/transaction/validasi/{id}', [TransactionController::class, 'validasi'])->name('transaction.validasi');
 Route::resource('user', UserController::class);
-
