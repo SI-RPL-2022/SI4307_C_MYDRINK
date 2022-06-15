@@ -47,7 +47,7 @@
                         <select name="role" id="" class="form-control">
                             <option value="">Pilih Role</option>
                             <option value="customer" {{$user->role == 'customer' ? 'selected' : ''}}>Customer</option>
-                            <option value="admin" {{$user->role == 'admin' ? 'selected' : ''}>Admin</option>
+                            <option value="admin" {{$user->role == 'admin' ? 'selected' : ''}}>Admin</option>
                         </select>
                         @error('role')
                             <div class="invalid-feedback">

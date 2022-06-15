@@ -8,6 +8,16 @@
                 <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
             </div>
         </form>
+        <div class="mt-4 p-5 bg-light rounded border">
+            <div class="d-flex justify-content-between">
+            <div class="col">
+                <h1>Cari produk favorit anda</h1>
+                <p>Produk favorit anda tersedia disini</p>
+            </div>
+            <img src="storage/foto/jumbotron.png" width="200px" alt="">
+            </div>
+          </div>
+        <h4 class="mt-2">Produk</h4>
         <div class="row mt-2">
             <div class="d-flex align-items-center gap-2">
                 @forelse ($products as $item)

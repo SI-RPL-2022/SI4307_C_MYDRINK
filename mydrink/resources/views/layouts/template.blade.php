@@ -19,21 +19,29 @@
             <a class="navbar-brand ps-3" href="{{ url('/')}}">MyDrink</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            {{-- Home link --}}
+            
             <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <form action="/produk" method="GET" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                    <input class="form-control" type="text" name="search" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
                 </div>
             </form>
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item"><a href="/profile" class="nav-link">{{ Auth::user()->name }}</a></li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        @if(Auth::user()->image)
+                            <img src="{{ asset('storage/' . Auth::user()->image ) }}" class="rounded-circle" width="30px" alt="">
+                        @else
+                        <i class="fas fa-user"></i>
+                        @endif
+                    </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{route('profile.index')}}">Profil</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><a class="dropdown-item" href="#!">Notifikasi</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item text-danger" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
@@ -52,15 +60,15 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
+                            @if(Auth::user()->role == 'admin')
                             <div class="sb-sidenav-menu-heading">UTAMA</div>
                             <a class="nav-link" href="{{route('home')}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Dashboard
                             </a>
-                            @if(Auth::user()->role == 'admin')
                             <div class="sb-sidenav-menu-heading">LAYANAN</div>
                             <a class="nav-link" href="/user">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Pelanggan
                             </a>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -74,17 +82,31 @@
                                     <a class="nav-link" href="/produk">Katalog</a>
                                 </nav>
                             </div>
-                            @endif
+                            <div class="sb-sidenav-menu-heading">TRANSAKSI</div>
+                            <a class="nav-link" href="/transaction">
+                                <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
+                                Transaksi
+                            </a>
+                            @else
                             <div class="sb-sidenav-menu-heading">UTAMA</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/beranda">
+                                <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                                Beranda
+                            </a>
+                            <a class="nav-link" href="/produk">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Katalog
                             </a>
                             <div class="sb-sidenav-menu-heading">TRANSAKSI</div>
-                            <a class="nav-link" href="/transaksi">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <a class="nav-link" href="/transaction">
+                                <div class="sb-nav-link-icon"><i class="fas fa-dollar"></i></div>
                                 Transaksi
                             </a>
+                            <a class="nav-link" href="/cart">
+                                <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                                Cart
+                            </a>
+                            @endif
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
@@ -111,37 +133,33 @@
                                     </div>
                                 </nav>
                             </div>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts
-                            </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         <p>{{Auth::user()->name}}</p>
+                        @if(Auth::user()->role == "admin")
                         <p>
                             Role : 
                             {{Auth::user()->role}}
                         </p>
+                        @endif
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container mt-4">
-                        @yield('content')
+                    <div class="container px-1">
+                        <div class="container">
+                            <h1 class="mt-4">@yield('title')</h1>
+                            @yield('content')
+                        </div>
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                            <div class="text-muted">Copyright &copy; MyDrink 2022</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;

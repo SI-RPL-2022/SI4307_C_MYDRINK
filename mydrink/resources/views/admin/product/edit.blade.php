@@ -1,4 +1,5 @@
 @extends('layouts.template')
+@section('title', 'Edit produk')
 
 @section('content')
     

@@ -1,10 +1,11 @@
 @extends('layouts.template')
+@section('title', 'transaction')
 
 @section('content')
     <div class="container">
         <div class="card">
             <div class="card-header">
-                Riwayat Transaksi
+                Riwayat transaction
             </div>
             <div class="card-body">
                 <table class="table">

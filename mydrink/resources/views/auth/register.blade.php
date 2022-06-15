@@ -49,7 +49,7 @@
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="role" id="role2" value="admin">
+                                    <input class="form-check-input" type="radio" name="role" id="role2" value="customer">
                                     <label class="form-check-label" for="role2">
                                         Customer
                                     </label>
@@ -61,7 +61,6 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="mb-3">
                             <label for="password" class="mb-2 text-muted">{{ __('Password') }}</label>
 

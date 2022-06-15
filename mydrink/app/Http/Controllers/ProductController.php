@@ -19,6 +19,11 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+
+        if(request('search')) {
+            $products->where('nama', 'like', '%' . request('search') . '%');
+        }
+
         return view('product.index', compact('products'));
     }
 

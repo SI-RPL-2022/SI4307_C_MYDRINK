@@ -36,24 +36,7 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        ]);
-    
-        if ($request->hasFile(‘image’)) {
-            $filenameWithExt = $request->file(‘image’)->getClientOriginalName ();
-            // Get Filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just Extension
-            $extension = $request->file(‘image’)->getClientOriginalExtension();
-            // Filename To store
-            $fileNameToStore = $filename. ‘_’. time().’.’.$extension;
-            // Upload Image$path = $request->file(‘image’)->storeAs(‘public/image’, $fileNameToStore);
-            }
-            // Else add a dummy image
-            else {
-            $fileNameToStore = ‘noimage.jpg’;
-            }
+        //
     }
 
     /**
@@ -87,7 +70,20 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'image' => 'image|file|max:2048'
+        ]);
+  
         $data = $request->all();
+  
+        if ($request->file('image')) {
+            $data['image'] = $request->file('image')->store('foto');
+        }else{
+            unset($data['image']);
+        }
+    
         $pass = User::find($id)->password;
 
         if ($request->password) {
@@ -107,6 +103,14 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+    public function deleteImage(Request $request, $id)
+    {
+        $image = User::find($request->id);
+        unlink('foto/'.$image->image);
+        User::where('id', $image->id)->delete();
+        return back();
+    }
     public function destroy($id)
     {
         //

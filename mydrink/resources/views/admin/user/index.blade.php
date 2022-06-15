@@ -1,4 +1,5 @@
 @extends('layouts.template')
+@section('title', 'Data admin dan pelanggan')
 
 @section('content')
     <div class="container">
