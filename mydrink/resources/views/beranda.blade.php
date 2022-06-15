@@ -23,7 +23,7 @@
                 @forelse ($products as $item)
                 <div class="card" style="width: 16rem;">
                     @if($item->foto)
-                        <img src="{{ Storage::url($item->foto) }}" class="card-img-top" alt="...">
+                        <img src="{{ asset('storage/' . ($item->foto) )}}" class="card-img-top" alt="...">
                     @else
                         <img src="storage/foto/blank-thumbnail.jpg" class="img-fluid" alt="">
                     @endif

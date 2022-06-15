@@ -1,4 +1,5 @@
 @extends('layouts.template')
+@section('title', 'Katalog')
 
 @section('content')
     <div class="container">
