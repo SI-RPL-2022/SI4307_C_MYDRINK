@@ -2,47 +2,27 @@
 
 @section('content')
     <div class="container">
-        <div class="card">
-            <div class="card-header">
-                Detail Produk
-            </div>
-            <div class="card-body">
-                <div class="d-flex justify-content-center align-items-center">
-                    <img src="{{ Storage::url($product->foto) }}" alt="" width="300">
+        <div class="d-flex gap-2">
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{ asset('storage/' . Auth::user()->image )}}" width="300" alt="">
                 </div>
-                <table style="width: 100%">
-                    <tr>
-                        <th>Nama Produk</th>
-                        <td>
-                            :
-                        </td>
-                        <td>
-                            {{ $product->nama }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Harga</th>
-                        <td>
-                            :
-                        </td>
-                        <td>
-                            {{$product->harga}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Deskripsi</th>
-                        <td>
-                            :
-                        </td>
-                        <td>
-                            {{$product->deskripsi}}
-                        </td>
-                    </tr>
-                </table>
             </div>
-            <div class="card-footer">
-                <a href="/transaction/create?id={{ $product->id }}" class="btn btn-primary w-100">Beli</a>
+            
+            <div class="card flex-fill">
+                <div class="card-body px-5">
+                    <h5>{{ $product->nama }}</h5>
+                    <h3 class="fw-bold">Rp.{{ $product->harga }}</h3>
+                    <div class="d-grid gap-0">
+                        <p class="mt-3 fw-bold">Deskripsi</p>
+                        <p>{{ $product->deskripsi }}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/transaction/create?id={{ $product->id }}" class="btn btn-primary w-100">Beli</a>
+                </div>
             </div>
         </div>
+        
     </div>
 @endsection
