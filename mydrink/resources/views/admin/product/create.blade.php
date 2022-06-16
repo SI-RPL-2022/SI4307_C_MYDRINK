@@ -26,17 +26,41 @@
                     </div>
                     <div class="form-group">
                         <label for="">Harga</label>
-                        <input type="number" name="harga" class="form-control @error('nama') is-invalid @enderror" value="{{ old('harga') }}">
+                        <input type="number" name="harga" class="form-control @error('harga') is-invalid @enderror" value="{{ old('harga') }}">
                         @error('harga')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
                         @enderror
                     </div>
+
+                    {{-- single img --}}
                     <div class="form-group">
-                        <label for="">Foto</label>
-                        <input type="file" name="foto" class="form-control">
+                        <label for="">Foto produk</label>
+                        <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror">
+                        @error('foto')
+                            <div class="invalid-feedback">
+                                {{$message}}
+                            </div>
+                        @enderror
                     </div>
+                    
+                    {{-- img --}}
+                    {{-- <label for="">Foto produk</label>
+                    <div class="input-group control-group increment" >
+                        <input type="file" name="foto" class="form-control">
+                        <div class="input-group-btn"> 
+                          <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                        </div>
+                      </div>
+                      <div class="clone hide">
+                        <div class="control-group input-group" style="margin-top:10px">
+                          <input type="file" name="foto" class="form-control">
+                          <div class="input-group-btn"> 
+                            <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                          </div>
+                        </div>
+                      </div> --}}
                     <div class="form-group">
                         <label for="">Deskripsi</label>
                         <input type="text" name="deskripsi" class="form-control" value="{{ old('deskripsi') }}">
@@ -48,4 +72,15 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".btn-success").click(function(){ 
+                var html = $(".clone").html();
+                $(".increment").after(html);
+            });
+            $("body").on("click",".btn-danger",function(){ 
+                $(this).parents(".control-group").remove();
+            });
+        });
+    </script>
 @endsection

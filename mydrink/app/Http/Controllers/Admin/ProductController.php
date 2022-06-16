@@ -49,9 +49,18 @@ class ProductController extends Controller
         $data = $request->all();
 
         if ($request->file('foto')) {
+            // foreach($request->file('foto') as $image){
+            //     $name = $image->getClientOriginalName();
+            //     $image->store('foto', 'public');
+            //     $data[] = $name;
+            // }
             $data['foto'] = $request->file('foto')->store('foto', 'public');
         }
 
+        // $product = new Product();
+        // $product->foto=json_encode($data);
+
+        // $product->save();
         Product::create($data);
 
         return redirect()->route('product.index');

@@ -19,6 +19,7 @@
                             <th>Nama</th>
                             <th>Harga</th>
                             <th>Deskripsi</th>
+                            <th>Foto produk</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -34,6 +35,7 @@
                                 <td>
                                     {{$item->deskripsi}}
                                 </td>
+                                <td><img src="{{ asset('storage/' . $item->foto) }}" width="200px" alt=""></td>
                                 <td class="d-flex align-items-center">
                                     <a href="{{ route('product.edit', $item->id) }}" class="btn btn-success">Edit</a>
                                     <form action="{{ route('product.destroy', $item->id) }}" method="post">
