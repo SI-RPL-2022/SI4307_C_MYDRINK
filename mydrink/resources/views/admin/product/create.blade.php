@@ -38,6 +38,7 @@
                     <div class="form-group">
                         <label for="">Foto produk</label>
                         <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror">
+                        <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror">
                         @error('foto')
                             <div class="invalid-feedback">
                                 {{$message}}

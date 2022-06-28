@@ -39,6 +39,10 @@
                         <input type="file" name="foto" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label for="">Foto</label>
+                        <input type="file" name="foto" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label for="">Deskripsi</label>
                         <input type="text" name="deskripsi" class="form-control" value="{{ $product->deskripsi }}">
                     </div>

@@ -43,25 +43,27 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         request()->validate([
+        // $this->validate($request,[
             'nama' => ['required'],
-            'harga' => ['required']
+            'harga' => ['required'],
+            'foto' => 'image|max:2048'
         ]);
-        $data = $request->all();
+        // $data = $request->all();
 
         if ($request->file('foto')) {
-            // foreach($request->file('foto') as $image){
-            //     $name = $image->getClientOriginalName();
-            //     $image->store('foto', 'public');
-            //     $data[] = $name;
-            // }
-            $data['foto'] = $request->file('foto')->store('foto', 'public');
+            foreach($request->file('foto') as $key => $file){
+                $foto = $file->store('foto', 'public');
+                $data[$key]['foto'] = $foto;
+            }
+            // $data['foto'] = $request->file('foto')->store('foto', 'public');
         }
 
+        Product::insert($data);
         // $product = new Product();
         // $product->foto=json_encode($data);
 
         // $product->save();
-        Product::create($data);
+        // Product::create($data); //ori
 
         return redirect()->route('product.index');
     }

@@ -36,6 +36,10 @@
                                     {{$item->deskripsi}}
                                 </td>
                                 <td><img src="{{ asset('storage/' . $item->foto) }}" width="200px" alt=""></td>
+                                {{-- <td> <?php foreach (json_decode($item->foto)as $foto) { ?>
+                                    <img src="{{ asset('storage/'.$foto) }}" style="height:120px; width:200px"/>
+                                   <?php } ?>
+                              </td> --}}
                                 <td class="d-flex align-items-center">
                                     <a href="{{ route('product.edit', $item->id) }}" class="btn btn-success">Edit</a>
                                     <form action="{{ route('product.destroy', $item->id) }}" method="post">
