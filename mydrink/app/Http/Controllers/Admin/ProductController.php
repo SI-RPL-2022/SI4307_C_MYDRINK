@@ -48,22 +48,16 @@ class ProductController extends Controller
             'harga' => ['required'],
             'foto' => 'image|max:2048'
         ]);
-        // $data = $request->all();
+        $data = $request->all();
 
         if ($request->file('foto')) {
-            foreach($request->file('foto') as $key => $file){
-                $foto = $file->store('foto', 'public');
-                $data[$key]['foto'] = $foto;
-            }
-            // $data['foto'] = $request->file('foto')->store('foto', 'public');
+            // foreach($request->file('foto') as $key => $file){
+            //     $foto = $file->store('foto', 'public');
+            //     $data[$key]['foto'] = $foto;
+            // }
+            $data['foto'] = $request->file('foto')->store('foto', 'public');
         }
-
-        Product::insert($data);
-        // $product = new Product();
-        // $product->foto=json_encode($data);
-
-        // $product->save();
-        // Product::create($data); //ori
+        Product::create($data); //ori
 
         return redirect()->route('product.index');
     }

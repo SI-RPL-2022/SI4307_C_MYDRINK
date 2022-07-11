@@ -27,12 +27,12 @@
                         <form action="{{ route('transaction.create') }}" method="get">
                             @csrf
                             <input type="hidden" name="id" value="{{ $item->id }}">
-                            <button class="btn btn-primary ms-2">Beli Sekarang</button>
+                            <button id="beli-{{ $item->id }}" class="btn btn-primary ms-2" dusk="beli">{{ __('Beli Sekarang') }}</button>
                         </form>
                     </div>
                   </div>
                 @empty
-                    
+                    <p>Belum ada produk</p>
                 @endforelse
             </div>
         </div>

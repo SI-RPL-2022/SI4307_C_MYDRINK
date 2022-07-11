@@ -20,7 +20,7 @@ use App\Http\Controllers\SettingController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('template');
 });
 
 Route::get('/check', function () {

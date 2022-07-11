@@ -84,7 +84,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     {{-- kelola barang (admin) --}}
                                     <a class="nav-link" href="/product">List produk</a>
-                                     {{--lihat barang--}}
+                                    {{--lihat barang--}}
                                     <a class="nav-link" href="/produk">Katalog</a>
                                 </nav>
                             </div>
